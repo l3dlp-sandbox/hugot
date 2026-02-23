@@ -13,6 +13,9 @@ type TextGenerationPipeline struct {
 	SystemPrompt  string
 	MaxLength     int
 	Streaming     bool
+	Temperature   *float64
+	TopP          *float64
+	Seed          *int
 	StopSequences []string
 }
 
@@ -53,6 +56,27 @@ func WithMaxLength(maxLength int) backends.PipelineOption[*TextGenerationPipelin
 func WithStreaming() backends.PipelineOption[*TextGenerationPipeline] {
 	return func(pipeline *TextGenerationPipeline) error {
 		pipeline.Streaming = true
+		return nil
+	}
+}
+
+func WithTemperature(temperature float64) backends.PipelineOption[*TextGenerationPipeline] {
+	return func(pipeline *TextGenerationPipeline) error {
+		pipeline.Temperature = &temperature
+		return nil
+	}
+}
+
+func WithTopP(topP float64) backends.PipelineOption[*TextGenerationPipeline] {
+	return func(pipeline *TextGenerationPipeline) error {
+		pipeline.TopP = &topP
+		return nil
+	}
+}
+
+func WithSeed(seed int) backends.PipelineOption[*TextGenerationPipeline] {
+	return func(pipeline *TextGenerationPipeline) error {
+		pipeline.Seed = &seed
 		return nil
 	}
 }
@@ -135,7 +159,7 @@ func (p *TextGenerationPipeline) Preprocess(batch *backends.PipelineBatch, input
 
 // Forward initiates the generation loop.
 func (p *TextGenerationPipeline) Forward(ctx context.Context, batch *backends.PipelineBatch) (chan backends.SequenceDelta, chan error, error) {
-	tokenStream, errorStream, initErr := backends.RunGenerativeSessionOnBatch(ctx, batch, p.BasePipeline, p.MaxLength, p.StopSequences)
+	tokenStream, errorStream, initErr := backends.RunGenerativeSessionOnBatch(ctx, batch, p.BasePipeline, p.MaxLength, p.StopSequences, p.Temperature, p.TopP, p.Seed)
 	if initErr != nil {
 		return nil, nil, initErr
 	}
