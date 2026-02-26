@@ -2,15 +2,13 @@ module github.com/knights-analytics/hugot
 
 go 1.25.0
 
-replace github.com/knights-analytics/ortgenai => github.com/knights-analytics/ortgenai v0.0.4-0.20260223132524-40cbd10beb7b
-
 require (
 	github.com/daulet/tokenizers v1.25.0
 	github.com/gomlx/exceptions v0.0.3
 	github.com/gomlx/go-huggingface v0.3.1
 	github.com/gomlx/gomlx v0.26.0
 	github.com/gomlx/onnx-gomlx v0.3.4
-	github.com/knights-analytics/ortgenai v0.0.3
+	github.com/knights-analytics/ortgenai v0.1.0
 	github.com/stretchr/testify v1.11.1
 	github.com/sugarme/tokenizer v0.3.0
 	github.com/urfave/cli/v3 v3.6.2

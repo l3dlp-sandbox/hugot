@@ -121,7 +121,7 @@ func createORTGenerativeSession(model *Model, options *options.Options) error {
 	if err != nil {
 		return fmt.Errorf("error mapping ORT options for generative session: %w", err)
 	}
-	ortGenAiSession, err := ortgenai.CreateGenerativeSessionAdvanced(model.Path, providers, providerOptions)
+	ortGenAiSession, err := ortgenai.CreateSessionWithOptions(model.Path, providers, providerOptions)
 	if err != nil {
 		return fmt.Errorf("error creating ortgenai session: %w", err)
 	}
