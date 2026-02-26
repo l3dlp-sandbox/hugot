@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## [0.6.3] - 2026-02-26
+
+###  Changed
+
+- Upgraded to ORT GenAI v0.12.0
+- Upgraded to ORT v1.24.2
+- Upgraded to Go v1.26.0
+- Upgraded tokenizers to v1.25.0
+- Added WithLogSeverityLevel, WithEnvLoggingLevel, WithGraphOptimizationLevel and WithExtraExecutionProvider options
+- Separated TensorRT and NvTensorRTRTX
+- Memory usage and bugfixes to generative pipelines
+
 ## [0.6.2] - 2026-01-28
 
 First release of 2026!
